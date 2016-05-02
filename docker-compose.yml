@@ -1,22 +1,29 @@
 elasticsearch:
-  image: elasticsearch:latest
+  image: libac/elasticsearch-rtf:latest
   command: elasticsearch -Des.network.host=0.0.0.0
+  restart: always
+  volumes:
+      - /srv/docker/docker-elk/elasticsearch/data:/usr/share/elasticsearch/data
+      - /srv/docker/docker-elk/elasticsearch/logs:/usr/share/elasticsearch/logs
   ports:
     - "9200:9200"
     - "9300:9300"
 logstash:
   image: logstash:latest
   command: logstash -f /etc/logstash/conf.d/logstash.conf
+  restart: always
   volumes:
-    - ./logstash/config:/etc/logstash/conf.d
+      - /srv/docker/docker-elk/logstash/config:/etc/logstash/conf.d
   ports:
-    - "5000:5000"
+    - "5001:5001"
+    - "4567:4567"
   links:
     - elasticsearch
 kibana:
   build: kibana/
+  restart: always
   volumes:
-    - ./kibana/config/:/opt/kibana/config/
+      - /srv/docker/docker-elk/kibana/config/:/opt/kibana/config/
   ports:
     - "5601:5601"
   links:

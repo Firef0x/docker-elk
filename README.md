@@ -8,7 +8,7 @@ It will give you the ability to analyze any data set by using the searching/aggr
 
 Based on the official images:
 
-* [elasticsearch](https://registry.hub.docker.com/_/elasticsearch/)
+* [elasticsearch-rtf](https://hub.docker.com/r/libac/elasticsearch-rtf/)
 * [logstash](https://registry.hub.docker.com/_/logstash/)
 * [kibana](https://registry.hub.docker.com/_/kibana/)
 
